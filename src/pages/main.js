@@ -1,35 +1,47 @@
 import Header from '../components/header'
 
 class MainPage {
-  constructor({ push }) {
+  constructor(props) {
     this.app = document.getElementById('app')
-    this.router = { push }
     this.user = JSON.parse(window.localStorage.getItem('user') || 'null')
+    this.children = []
+    this.props = props
 
-    this.header = new Header({
-      router: this.router,
-      user: this.user,
-      onSignout: this.handleSingout.bind(this),
-    })
-
-    this.render()
+    this.componentUpdate()
   }
 
-  bindEvent() {
-    this.header.bindEvent()
+  updateChildrenProps() {
+    this.children = [
+      new Header({
+        parent: this.app,
+        router: this.props.router,
+        onSignout: this.handleSingout.bind(this),
+        user: this.user,
+      }),
+    ]
+  }
+
+  componentUpdate() {
+    this.updateChildrenProps()
+    this.render()
+    this.componentbindEvent()
+  }
+
+  componentbindEvent() {
+    this.children.forEach((children) => children.bindEvent())
   }
 
   handleSingout() {
+    this.user = null
     window.localStorage.removeItem('user')
-    this.render()
+
+    this.componentUpdate()
   }
 
   render() {
-    this.app.innerHTML = `
-      ${this.header.render()}
-    `
-
-    this.bindEvent()
+    this.app.innerHTML = this.children.reduce((html, children) => {
+      return `${html}${children.render()}`
+    }, ``)
   }
 }
 

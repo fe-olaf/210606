@@ -19,7 +19,7 @@ class Router {
     const path = hash.replace('#', '/') || '/'
 
     if (this.routes[path]) {
-      new this.routes[path]({ push: this.push })
+      new this.routes[path]({ router: { push: this.push } })
     } else {
       new this.routes['/error']()
     }

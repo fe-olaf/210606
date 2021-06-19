@@ -1,40 +1,40 @@
 import './header.scss'
 
 class Header {
-  constructor({ router, user, onSignout }) {
-    this.router = router
-    this.user = user
-    this.onSignout = onSignout
+  constructor(props) {
+    this.props = props
   }
 
   bindEvent() {
+    const { parent, router, onSignout } = this.props
+
     // 이벤트 위임 설명
-    document.querySelector('.wrap_user').addEventListener('click', (e) => {
+    parent.querySelector('.wrap_user').addEventListener('click', (e) => {
       if (e.target.className === 'btn_signout') {
-        this.user = null
-        this.onSignout()
+        onSignout()
       }
       if (e.target.className === 'btn_signin') {
-        this.router.push('/signin')
+        router.push('/signin')
       }
     })
   }
 
   render() {
+    const { user } = this.props
+
     return `
         <div class="wrap_header">
             <div class="wrap_user">
                 ${
-                  this.user
+                  user
                     ? `
                     <button class="btn_signout">로그아웃</button>
-                    <img class="thumbnail" src="${this.user.thumbnail}">
+                    <img class="thumbnail" src="${user.thumbnail}">
                 `
                     : `
                     <button class="btn_signin">로그인</button>
                     `
                 }
-                
             </div>
         </div>`
   }

@@ -1,13 +1,16 @@
 import './signin.scss'
 
 class SinginPage {
-  constructor({ push }) {
+  constructor(props) {
     this.app = document.getElementById('app')
+    this.props = props
+
+    this.componentUpdate()
+  }
+
+  componentUpdate() {
     this.render()
     this.bindEvent()
-    this.router = {
-      push,
-    }
   }
 
   bindEvent() {
@@ -35,7 +38,7 @@ class SinginPage {
           }
 
           window.localStorage.setItem('user', JSON.stringify(user))
-          this.router.push('/')
+          this.props.router.push('/')
         }
       })
   }
