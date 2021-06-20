@@ -24,6 +24,12 @@ console.log(typeof 10)
  * undefined = 선언은되어있지만 값이 할당되지 않은 상태
  */
 
+var a // undefined
+
+var user = null // 값을 정상적으로 불러오지못했을때
+var user // 초기
+var user = {} // 값을 불러왔을 때
+
 console.dir({})
 
 function foo() {}
