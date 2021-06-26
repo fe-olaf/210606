@@ -1,4 +1,4 @@
-import Header from '../components/main/header'
+import Header from '../components/shared/header'
 import Story from '../components/main/story'
 
 import { fetchFriends } from '../service/story'
