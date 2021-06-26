@@ -9,6 +9,7 @@ class Header {
     const { router, onSignout } = this.props
 
     // 이벤트 위임 설명
+    // https://jsfiddle.net/2hf310r6/2/
     document.querySelector('.wrap_user').addEventListener('click', (e) => {
       if (e.target.className === 'btn_signout') {
         onSignout()

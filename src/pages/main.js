@@ -1,4 +1,7 @@
 import Header from '../components/main/header'
+import Story from '../components/main/story'
+
+import { fetchFriends } from '../service/story'
 
 class MainPage {
   constructor(props) {
@@ -7,16 +10,28 @@ class MainPage {
     this.user = JSON.parse(window.localStorage.getItem('user') || 'null')
     this.props = props
 
+    this.friends = []
+
+    this.initiallize()
+  }
+
+  async initiallize() {
+    if (this.user) {
+      this.friends = await fetchFriends()
+    }
+
     this.componentUpdate()
   }
 
   updateChildrenProps() {
     this.children = [
       new Header({
-        parent: this.app,
         router: this.props.router,
         onSignout: this.handleSingout.bind(this),
         user: this.user,
+      }),
+      new Story({
+        friends: this.friends,
       }),
     ]
   }
@@ -30,6 +45,8 @@ class MainPage {
 
   handleSingout() {
     this.user = null
+    this.friends = []
+
     window.localStorage.removeItem('user')
 
     this.componentUpdate()

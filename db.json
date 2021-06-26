@@ -6,5 +6,37 @@
             "password": "1234",
             "thumbnail": "https://mblogthumb-phinf.pstatic.net/MjAyMDAzMTNfMjA2/MDAxNTg0MDI3MzA1MTM1.ziQdHXjoSVpswgl7MkBXPOamMHIiKQKPpqjtQNkw6IMg.rkebY82ViYlYz83X1y5B7Fm6qyQkC2ZZlmHgRyJw1vAg.JPEG.d_hye97/1.jpg?type=w800"
         }
+    ],
+    "friends": [
+        {
+            "id": 1,
+            "name": "철수",
+            "thumbnail": "https://mblogthumb-phinf.pstatic.net/20140902_201/lego15992_1409644609780LhxwO_JPEG/10.jpg?type=w2"
+        },
+        {
+            "id": 2,
+            "name": "훈이",
+            "thumbnail": "https://cdnweb01.wikitree.co.kr/webdata/editor/202008/12/img_20200812173531_8d6b101e.webp"
+        },
+        {
+            "id": 3,
+            "name": "유리",
+            "thumbnail": "https://pbs.twimg.com/media/D2-4TrYU8AAVZCi.jpg"
+        },
+        {
+            "id": 4,
+            "name": "맹구",
+            "thumbnail": "https://img.insight.co.kr/static/2019/06/23/700/3j63y3804jpjn9m0v891.jpg"
+        },
+        {
+            "id": 5,
+            "name": "흰둥이",
+            "thumbnail": "https://ww.namu.la/s/b19451c1e37afd921d603b5dc1c40e22c32ac798f7754be8b962e30c34c8d5d8e97c05d0f67edf3d4e6a29cf3742168157600216e66b3d4550c160ad3675537fe5d9aa8f6a6e3bdb7b3c1725c6d6bbc79a777f86ed92bf29cbe2e3cf00a4707f5bddef3532cf1b40fca7c7122adba0b0"
+        },
+        {
+            "id": 6,
+            "name": "수지",
+            "thumbnail": "https://cdnweb01.wikitree.co.kr/webdata/editor/202101/04/img_20210104204134_873bbbd5.webp"
+        }
     ]
 }
