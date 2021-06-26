@@ -1,7 +1,9 @@
 import Header from '../components/shared/header'
 import Story from '../components/main/story'
+import Feed from '../components/main/feed'
 
 import { fetchFriends } from '../service/story'
+import { fetchFeeds } from '../service/feed'
 
 class MainPage {
   constructor(props) {
@@ -11,6 +13,7 @@ class MainPage {
     this.props = props
 
     this.friends = []
+    this.feeds = []
 
     this.initiallize()
   }
@@ -19,6 +22,8 @@ class MainPage {
     if (this.user) {
       this.friends = await fetchFriends()
     }
+
+    this.feeds = await fetchFeeds()
 
     this.componentUpdate()
   }
@@ -31,6 +36,9 @@ class MainPage {
       }),
       new Story({
         friends: this.friends,
+      }),
+      new Feed({
+        feeds: this.feeds,
       }),
     ]
   }
