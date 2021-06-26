@@ -27,7 +27,6 @@ class MainPage {
     this.children = [
       new Header({
         router: this.props.router,
-        onSignout: this.handleSingout.bind(this),
         user: this.user,
       }),
       new Story({
