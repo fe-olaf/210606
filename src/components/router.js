@@ -13,6 +13,10 @@ class Router {
     }
   }
 
+  push(pathName) {
+    window.location.hash = pathName.replace('/', '#')
+  }
+
   // 최초 진입시, hash 값이 바뀌었을때 변경된 내용을 반영한다.
   render() {
     // #main => /main
@@ -20,7 +24,11 @@ class Router {
     const Component = this.routes[path]
 
     if (Component) {
-      new Component()
+      new Component({
+        router: {
+          push: this.push,
+        },
+      })
     } else {
       const ErrorComponent = this.routes['/error']
       new ErrorComponent()
