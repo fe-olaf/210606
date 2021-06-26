@@ -1,8 +1,9 @@
 import './signin.scss'
 
 class SigninPage {
-  constructor() {
+  constructor(props) {
     this.root = document.getElementById('app')
+    this.props = props
 
     this.componentUpdate()
   }
@@ -17,6 +18,10 @@ class SigninPage {
   bindEvent() {
     const emailEl = this.root.querySelector('#email')
     const passwordEl = this.root.querySelector('#password')
+
+    const {
+      router: { push },
+    } = this.props
 
     this.root
       .querySelector('.btn_submit')
@@ -54,11 +59,10 @@ class SigninPage {
             return
           }
 
-          // 로그인성공 !
-          // 다음주에 다시
+          // 로그인성공했으면 메인페이지로 이동한다.
           window.localStorage.setItem('user', JSON.stringify(user))
 
-          // 로그인성공했으면 메인페이지로 이동한다.
+          push('/')
         }
       })
   }
