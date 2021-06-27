@@ -1,5 +1,6 @@
 import Header from '../components/shared/header'
 import Story from '../components/main/story'
+import Feed from '../components/main/feed'
 
 import { getUser } from '../utils/user'
 import { render } from '../utils/render'
@@ -9,15 +10,17 @@ import { fetchStory } from '../service/story'
 
 class MainPage {
   constructor(props) {
-    this.root = document.getElementById('app')
-    this.user = getUser()
+    // 외부
     this.props = props
 
+    // 내 상태
+    this.root = document.getElementById('app')
+    this.user = getUser()
     this.children = [] // 페이지 내부에서 그릴 컴포넌트들
-
     this.feeds = []
     this.friends = []
 
+    // 값 초기화
     this.initialize() // (1) 초기값 세팅
   }
 
@@ -52,6 +55,9 @@ class MainPage {
       }),
       new Story({
         friends: this.friends,
+      }),
+      new Feed({
+        feeds: this.feeds,
       }),
     ]
   }
