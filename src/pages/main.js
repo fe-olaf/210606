@@ -1,9 +1,12 @@
 import Header from '../components/shared/header'
 
+import { getUser } from '../utils/user'
+import { render } from '../utils/render'
+
 class MainPage {
   constructor() {
     this.root = document.getElementById('app')
-    this.user = JSON.parse(window.localStorage.getItem('user') || null)
+    this.user = getUser()
 
     this.children = [] // 페이지 내부에서 그릴 컴포넌트들
 
@@ -42,12 +45,7 @@ class MainPage {
 
   // 자식들을 모아서 root 에 붙인다.
   render() {
-    this.root.innerHTML = this.children.reduce((prev, component) => {
-      return `
-        ${prev}
-        ${component.render()}
-      `
-    }, ``)
+    this.root.innerHTML = render(this.children)
   }
 }
 
