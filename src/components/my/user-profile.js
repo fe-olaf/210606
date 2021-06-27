@@ -3,6 +3,17 @@ class UserProfile {
     this.props = props
   }
 
+  componentBindEvent() {
+    const {
+      router: { push },
+    } = this.props
+
+    document.querySelector('.btn_logout').addEventListener('click', () => {
+      window.localStorage.removeItem('user')
+      push('/')
+    })
+  }
+
   render() {
     const { name, thumbnail } = this.props.user
 

@@ -5,7 +5,26 @@ class Header {
     this.props = props
   }
 
-  componentBindEvent() {}
+  componentBindEvent() {
+    const {
+      router: { push },
+    } = this.props
+
+    document.querySelector('.wrap_header').addEventListener('click', (e) => {
+      if (e.target.className === 'logo') {
+        // 메인페이지로 이동
+        push('/')
+      }
+      if (e.target.className === 'thumbnail') {
+        // 마이페이지
+        push('/my')
+      }
+      if (e.target.className === 'btn_signin') {
+        // 로그인페이지
+        push('/signin')
+      }
+    })
+  }
 
   render() {
     const { user } = this.props

@@ -4,9 +4,10 @@ import { getUser } from '../utils/user'
 import { render } from '../utils/render'
 
 class MainPage {
-  constructor() {
+  constructor(props) {
     this.root = document.getElementById('app')
     this.user = getUser()
+    this.props = props
 
     this.children = [] // 페이지 내부에서 그릴 컴포넌트들
 
@@ -36,12 +37,19 @@ class MainPage {
     this.children = [
       new Header({
         user: this.user,
+        router: this.props.router,
       }),
     ]
   }
 
   // children (자식 컴포넌트) 이벤트를 다시 달아준다.
-  componentBindEvent() {}
+  componentBindEvent() {
+    this.children.forEach((component) => {
+      if (component.componentBindEvent) {
+        component.componentBindEvent()
+      }
+    })
+  }
 
   // 자식들을 모아서 root 에 붙인다.
   render() {

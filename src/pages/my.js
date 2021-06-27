@@ -31,13 +31,22 @@ class MyPage {
     this.children = [
       new Header({
         user: this.user,
+        router: this.props.router,
       }),
       new UserProfile({
         user: this.user,
+        router: this.props.router,
       }),
     ]
   }
-  componentBindEvent() {}
+
+  componentBindEvent() {
+    this.children.forEach((component) => {
+      if (component.componentBindEvent) {
+        component.componentBindEvent()
+      }
+    })
+  }
 
   render() {
     this.root.innerHTML = render(this.children)
