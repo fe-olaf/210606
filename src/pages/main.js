@@ -1,7 +1,11 @@
 import Header from '../components/shared/header'
+import Story from '../components/main/story'
 
 import { getUser } from '../utils/user'
 import { render } from '../utils/render'
+
+import { fetchFeeds } from '../service/feed'
+import { fetchStory } from '../service/story'
 
 class MainPage {
   constructor(props) {
@@ -11,12 +15,19 @@ class MainPage {
 
     this.children = [] // 페이지 내부에서 그릴 컴포넌트들
 
+    this.feeds = []
+    this.friends = []
+
     this.initialize() // (1) 초기값 세팅
   }
 
   // 초기 값을 세팅하기 위한 함수
-  initialize() {
+  async initialize() {
     // 비동기 값
+    if (this.user) {
+      this.friends = await fetchStory()
+    }
+    this.feeds = await fetchFeeds()
 
     this.componentUpdate() // (2) 컴포넌트 변화를 전파
   }
@@ -38,6 +49,9 @@ class MainPage {
       new Header({
         user: this.user,
         router: this.props.router,
+      }),
+      new Story({
+        friends: this.friends,
       }),
     ]
   }
